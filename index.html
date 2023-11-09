@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RGB LED Control</title>
+</head>
+<body>
+  <h1>RGB LED Control</h1>
+  <label for="color">Select LED Color:</label>
+  <select id="color">
+    <option value="red">Red</option>
+    <option value="blue">Blue</option>
+    <option value="off">Off</option>
+  </select>
+  <button onclick="setColor()">Set Color</button>
+
+  <script>
+    async function setColor() {
+      const selectedColor = document.getElementById("color").value;
+      const response = await fetch("/setcolor?color=" + selectedColor);
+      if (response.status === 200) {
+        console.log("Color set to " + selectedColor);
+      } else {
+        console.error("Error setting color");
+      }
+    }
+
+    async function getCurrentColor() {
+      const response = await fetch("/getcolor");
+      if (response.status === 200) {
+        const data = await response.json();
+        document.getElementById("color").value = data.color;
+      }
+    }
+
+    // Initialize the color selection from the server
+    getCurrentColor();
+  </script>
+</body>
+</html>
