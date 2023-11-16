@@ -8,8 +8,8 @@ const int lightSensorPin = 4;
 
 const int lightThreshold = 500; // Adjust this threshold as needed
 
-const char* ssid = "TKZ-10";
-const char* password = "Careful11well";
+const char* ssid = "";
+const char* password = "";
 const char* serverAddress = "http://localhost:8000"; // Replace with your Node.js server's IP and port
 
 String currentColor = "off";
